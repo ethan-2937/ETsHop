@@ -31,4 +31,8 @@ public class RedisComponent {
     public void deleteCheckCode(String key) {
         redisUtils.delete(Constants.REDIS_KEY_CHECK_CODE + key);
     }
+
+    public void deleteTokenInfo4Admin(String token) {
+        redisUtils.delete(Constants.REDIS_KEY_TOKEN_ADMIN + token);
+    }
 }
