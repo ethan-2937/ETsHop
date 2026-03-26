@@ -31,6 +31,14 @@ public class SysCategory implements Serializable {
      */
     private Integer sort;
 
+    private List<SysProductProperty> productPropertyList;
+    public List<SysProductProperty> getProductPropertyList(){
+        return productPropertyList;
+    }
+    public void setProductPropertyList(List<SysProductProperty> productPropertyList){
+        this.productPropertyList = productPropertyList;
+    }
+
     private List<SysCategory> children= new ArrayList();
     public List<SysCategory> getChildren(){
         return children;

@@ -13,7 +13,23 @@
 		<result column="p_category_id" property="pCategoryId"  />
 		<!---->
 		<result column="sort" property="sort"  />
+		<collection property="productPropertyList" ofType="com.etshop.entity.po.SysProductProperty">
+			<!--属性ID-->
+			<result column="sp_property_id" property="propertyId"  />
+			<!--属性名称-->
+			<result column="sp_property_name" property="propertyName"  />
+			<!--一级分类-->
+			<result column="sp_p_category_id" property="pCategoryId"  />
+			<!--二级分类-->
+			<result column="sp_category_id" property="categoryId"  />
+			<!--排序-->
+			<result column="sp_property_sort" property="propertySort"  />
+			<!--0:无需传封面 1:需传封面-->
+			<result column="sp_cover_type" property="coverType"  />
+		</collection>
 	</resultMap>
+
+
 
 
 	<!-- 通用查询结果列-->
@@ -57,7 +73,20 @@
 
 	<!-- 查询集合-->
 	<select id="selectList" resultMap="base_result_map" >
-		 SELECT <include refid="base_column_list" /> FROM sys_category s <include refid="query_condition" />
+		 SELECT <include refid="base_column_list" />
+		     <if test="query.queryProperty">
+		        ,sp.property_id sp_property_id,
+		     sp.property_name sp_property_name,
+		     sp.p_category_id sp_p_category_id,
+		     sp.category_id sp_category_id,
+		     sp.property_sort sp_property_sort,
+		     sp.cover_type sp_cover_type
+		     </if>
+		     FROM sys_category s
+		     <if test="query.queryProperty">
+		        left join sys_product_property sp on  sp.category_id=s.category_id
+		     </if>
+		     <include refid="query_condition" />
 		 <if test="query.orderBy!=null">
 			 order by ${query.orderBy}
 		 </if>

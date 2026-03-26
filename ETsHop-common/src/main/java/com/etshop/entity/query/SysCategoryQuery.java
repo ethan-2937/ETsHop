@@ -34,6 +34,15 @@ public class SysCategoryQuery extends BaseParam {
 	 */
 	private Integer sort;
 
+	private Boolean queryProperty;
+	public void setQueryProperty(Boolean queryProperty){
+		this.queryProperty = queryProperty;
+	}
+
+	public Boolean getQueryProperty(){
+		return this.queryProperty;
+	}
+
 	private String categoryOrPCategory;
 	public void setCategoryOrPCategory(String categoryOrPCategory){
 		this.categoryOrPCategory = categoryOrPCategory;

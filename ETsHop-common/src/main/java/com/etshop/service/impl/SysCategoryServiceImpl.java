@@ -31,7 +31,7 @@ public class SysCategoryServiceImpl implements SysCategoryService {
 	@Override
 	public List<SysCategory> findListByParam(SysCategoryQuery param) {
 		List<SysCategory> categoryList = this.sysCategoryMapper.selectList(param);
-		if (param.getConvert2Tree()!=false && param.getConvert2Tree()) {
+		if (param.getConvert2Tree() != false && param.getConvert2Tree()) {
 			categoryList = this.convert2Tree(categoryList, Constants.ZERO);
 		}
 		return categoryList;
