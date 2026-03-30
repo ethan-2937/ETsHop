@@ -1,13 +1,9 @@
-package com.etshop.entity.query;
+package com.etshop.entity.po;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
-
-/**
- * 参数
- */
-public class ProductSkuQuery extends BaseParam {
+public class ProductSku implements Serializable {
 
 
 	/**
@@ -15,21 +11,15 @@ public class ProductSkuQuery extends BaseParam {
 	 */
 	private String productId;
 
-	private String productIdFuzzy;
-
 	/**
 	 * 属性值id组hash
 	 */
 	private String propertyValueIdHash;
 
-	private String propertyValueIdHashFuzzy;
-
 	/**
 	 * 属性值id组
 	 */
 	private String propertyValueIds;
-
-	private String propertyValueIdsFuzzy;
 
 	/**
 	 * 价格
@@ -47,32 +37,12 @@ public class ProductSkuQuery extends BaseParam {
 	private Integer sort;
 
 
-	private List<String> productIdList;
-	public List<String> getProductIdList() {
-		return productIdList;
-	}
-
-	public void setProductIdList(List<String> productIdList) {
-		this.productIdList = productIdList;
-	}
-
-
-
-
 	public void setProductId(String productId){
 		this.productId = productId;
 	}
 
 	public String getProductId(){
 		return this.productId;
-	}
-
-	public void setProductIdFuzzy(String productIdFuzzy){
-		this.productIdFuzzy = productIdFuzzy;
-	}
-
-	public String getProductIdFuzzy(){
-		return this.productIdFuzzy;
 	}
 
 	public void setPropertyValueIdHash(String propertyValueIdHash){
@@ -83,28 +53,12 @@ public class ProductSkuQuery extends BaseParam {
 		return this.propertyValueIdHash;
 	}
 
-	public void setPropertyValueIdHashFuzzy(String propertyValueIdHashFuzzy){
-		this.propertyValueIdHashFuzzy = propertyValueIdHashFuzzy;
-	}
-
-	public String getPropertyValueIdHashFuzzy(){
-		return this.propertyValueIdHashFuzzy;
-	}
-
 	public void setPropertyValueIds(String propertyValueIds){
 		this.propertyValueIds = propertyValueIds;
 	}
 
 	public String getPropertyValueIds(){
 		return this.propertyValueIds;
-	}
-
-	public void setPropertyValueIdsFuzzy(String propertyValueIdsFuzzy){
-		this.propertyValueIdsFuzzy = propertyValueIdsFuzzy;
-	}
-
-	public String getPropertyValueIdsFuzzy(){
-		return this.propertyValueIdsFuzzy;
 	}
 
 	public void setPrice(BigDecimal price){
@@ -131,4 +85,8 @@ public class ProductSkuQuery extends BaseParam {
 		return this.sort;
 	}
 
+	@Override
+	public String toString (){
+		return "商品ID:"+(productId == null ? "空" : productId)+"，属性值id组hash:"+(propertyValueIdHash == null ? "空" : propertyValueIdHash)+"，属性值id组:"+(propertyValueIds == null ? "空" : propertyValueIds)+"，价格:"+(price == null ? "空" : price)+"，库存:"+(stock == null ? "空" : stock)+"，排序:"+(sort == null ? "空" : sort);
+	}
 }

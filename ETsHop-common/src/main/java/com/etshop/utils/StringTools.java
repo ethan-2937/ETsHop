@@ -56,14 +56,29 @@ public class StringTools {
     }
 
     public static String encodeByMD5(String originalString) {
-    return StringTools.isEmpty(originalString) ? null : DigestUtils.md5Hex(originalString);
+        return StringTools.isEmpty(originalString) ? null : DigestUtils.md5Hex(originalString);
     }
 
     public static String getRandomNumber(int length) {
-        return RandomStringUtils.random(length,false,true);
+        return RandomStringUtils.random(length, false, true);
     }
 
     public static String getRandomString(int length) {
-        return RandomStringUtils.random(length,true,true);
+        return RandomStringUtils.random(length, true, true);
+    }
+
+    public static String getFileSuffix(String fileName) {
+        return fileName.substring(fileName.lastIndexOf(".") + 1);
+    }
+
+    //校验路径是否安全
+    public static boolean pathIsOk(String path) {
+        if (StringTools.isEmpty(path)) {
+            return true;
+        }
+        if (path.contains("../") || path.contains("..\\")) {
+            return false;
+        }
+        return true;
     }
 }

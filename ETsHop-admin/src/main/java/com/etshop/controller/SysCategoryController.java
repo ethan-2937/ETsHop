@@ -60,18 +60,27 @@ public class SysCategoryController extends ABaseController{
 		return getSuccessResponseVO(null);
 	}
 
+	/**
+	 * 修改分类排序
+	 */
 	@RequestMapping("/changeCategorySort")
 	public ResponseVO changeCategorySort(String categoryIds) {
 		sysCategoryService.changeCategorySort(categoryIds);
 		return getSuccessResponseVO(null);
 	}
 
+	/**
+	 * 新增商品属性
+	 */
 	@RequestMapping("/saveProductProperty")
 	public ResponseVO saveProductProperty(SysProductProperty productProperty) {
 		sysProductPropertyService.saveProductProperty(productProperty);
 		return getSuccessResponseVO(null);
 	}
 
+	/**
+	 * 删除商品属性
+	 */
 	@RequestMapping("/delProductProperty")
 	public ResponseVO delProductProperty(String propertyId) {
 		sysProductPropertyService.deleteProductProperty(propertyId);

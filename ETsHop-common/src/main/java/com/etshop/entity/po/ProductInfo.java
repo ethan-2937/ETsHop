@@ -1,68 +1,69 @@
-package com.etshop.entity.query;
+package com.etshop.entity.po;
 
+import com.etshop.entity.enums.DateTimePatternEnum;
+import com.etshop.utils.DateUtil;
+import com.etshop.valid.UpdateGroup;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
-
+import java.util.Date;
 
 /**
- * 商品信息参数
+ * 商品信息
  */
-public class ProductInfoQuery extends BaseParam {
+public class ProductInfo implements Serializable {
 
 
 	/**
 	 * 商品ID
 	 */
+	@NotEmpty(groups = {UpdateGroup.class})
 	private String productId;
-
-	private String productIdFuzzy;
 
 	/**
 	 * 商品名称
 	 */
+	@NotEmpty
 	private String productName;
-
-	private String productNameFuzzy;
 
 	/**
 	 * 商品描述
 	 */
+	@NotEmpty
 	private String productDesc;
-
-	private String productDescFuzzy;
 
 	/**
 	 * 封面
 	 */
+	@NotEmpty
 	private String cover;
-
-	private String coverFuzzy;
 
 	/**
 	 * 创建时间
 	 */
-	private String createTime;
-
-	private String createTimeStart;
-
-	private String createTimeEnd;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date createTime;
 
 	/**
 	 * 分类ID
 	 */
+	@NotEmpty
 	private String categoryId;
-
-	private String categoryIdFuzzy;
 
 	/**
 	 * 分类父ID
 	 */
+	@NotEmpty
 	private String pCategoryId;
-
-	private String pCategoryIdFuzzy;
 
 	/**
 	 * -1:已删除 0:下架  1:上架
 	 */
+
 	private Integer status;
 
 	/**
@@ -86,33 +87,12 @@ public class ProductInfoQuery extends BaseParam {
 	private Integer commendType;
 
 
-	private String categoryIdOrPCategoryId;
-
-	public String getCategoryIdOrPCategoryId() {
-		return categoryIdOrPCategoryId;
-	}
-
-	public void setCategoryIdOrPCategoryId(String categoryIdOrPCategoryId) {
-		this.categoryIdOrPCategoryId = categoryIdOrPCategoryId;
-	}
-
-
-
-
 	public void setProductId(String productId){
 		this.productId = productId;
 	}
 
 	public String getProductId(){
 		return this.productId;
-	}
-
-	public void setProductIdFuzzy(String productIdFuzzy){
-		this.productIdFuzzy = productIdFuzzy;
-	}
-
-	public String getProductIdFuzzy(){
-		return this.productIdFuzzy;
 	}
 
 	public void setProductName(String productName){
@@ -123,28 +103,12 @@ public class ProductInfoQuery extends BaseParam {
 		return this.productName;
 	}
 
-	public void setProductNameFuzzy(String productNameFuzzy){
-		this.productNameFuzzy = productNameFuzzy;
-	}
-
-	public String getProductNameFuzzy(){
-		return this.productNameFuzzy;
-	}
-
 	public void setProductDesc(String productDesc){
 		this.productDesc = productDesc;
 	}
 
 	public String getProductDesc(){
 		return this.productDesc;
-	}
-
-	public void setProductDescFuzzy(String productDescFuzzy){
-		this.productDescFuzzy = productDescFuzzy;
-	}
-
-	public String getProductDescFuzzy(){
-		return this.productDescFuzzy;
 	}
 
 	public void setCover(String cover){
@@ -155,35 +119,12 @@ public class ProductInfoQuery extends BaseParam {
 		return this.cover;
 	}
 
-	public void setCoverFuzzy(String coverFuzzy){
-		this.coverFuzzy = coverFuzzy;
-	}
-
-	public String getCoverFuzzy(){
-		return this.coverFuzzy;
-	}
-
-	public void setCreateTime(String createTime){
+	public void setCreateTime(Date createTime){
 		this.createTime = createTime;
 	}
 
-	public String getCreateTime(){
+	public Date getCreateTime(){
 		return this.createTime;
-	}
-
-	public void setCreateTimeStart(String createTimeStart){
-		this.createTimeStart = createTimeStart;
-	}
-
-	public String getCreateTimeStart(){
-		return this.createTimeStart;
-	}
-	public void setCreateTimeEnd(String createTimeEnd){
-		this.createTimeEnd = createTimeEnd;
-	}
-
-	public String getCreateTimeEnd(){
-		return this.createTimeEnd;
 	}
 
 	public void setCategoryId(String categoryId){
@@ -194,28 +135,12 @@ public class ProductInfoQuery extends BaseParam {
 		return this.categoryId;
 	}
 
-	public void setCategoryIdFuzzy(String categoryIdFuzzy){
-		this.categoryIdFuzzy = categoryIdFuzzy;
-	}
-
-	public String getCategoryIdFuzzy(){
-		return this.categoryIdFuzzy;
-	}
-
 	public void setpCategoryId(String pCategoryId){
 		this.pCategoryId = pCategoryId;
 	}
 
 	public String getpCategoryId(){
 		return this.pCategoryId;
-	}
-
-	public void setpCategoryIdFuzzy(String pCategoryIdFuzzy){
-		this.pCategoryIdFuzzy = pCategoryIdFuzzy;
-	}
-
-	public String getpCategoryIdFuzzy(){
-		return this.pCategoryIdFuzzy;
 	}
 
 	public void setStatus(Integer status){
@@ -258,4 +183,8 @@ public class ProductInfoQuery extends BaseParam {
 		return this.commendType;
 	}
 
+	@Override
+	public String toString (){
+		return "商品ID:"+(productId == null ? "空" : productId)+"，商品名称:"+(productName == null ? "空" : productName)+"，商品描述:"+(productDesc == null ? "空" : productDesc)+"，封面:"+(cover == null ? "空" : cover)+"，创建时间:"+(createTime == null ? "空" : DateUtil.format(createTime, DateTimePatternEnum.YYYY_MM_DD_HH_MM_SS.getPattern()))+"，分类ID:"+(categoryId == null ? "空" : categoryId)+"，分类父ID:"+(pCategoryId == null ? "空" : pCategoryId)+"，-1:已删除 0:下架  1:上架:"+(status == null ? "空" : status)+"，最低价格:"+(minPrice == null ? "空" : minPrice)+"，最高价格:"+(maxPrice == null ? "空" : maxPrice)+"，销量:"+(totalSale == null ? "空" : totalSale)+"，0:未推荐 1:已经推荐:"+(commendType == null ? "空" : commendType);
+	}
 }

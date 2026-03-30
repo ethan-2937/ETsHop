@@ -10,11 +10,16 @@ public class AppConfig {
     private String adminAccount;
     @Value("${admin.password:}")
     private String adminPassword;
+    @Value("${project.folder:}")
+    private String projectFolder;
 
     public String getAdminAccount() {
         return adminAccount;
     }
     public String getAdminPassword() {
         return adminPassword;
+    }
+    public String getProjectFolder() {
+        return projectFolder;
     }
 }

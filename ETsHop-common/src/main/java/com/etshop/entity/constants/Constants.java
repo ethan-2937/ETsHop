@@ -20,4 +20,8 @@ public class Constants {
     public static final Integer LENGTH_15 = 15;
 
     public static final Integer LENGTH_30 = 30;
+
+    public static final String FILE_FOLDER = "file/";
+
+    public static final String IMAGE_THUMBNAIL_SUFFIX = "_thumbnail";
 }
